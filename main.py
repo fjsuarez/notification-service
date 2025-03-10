@@ -53,7 +53,7 @@ app = FastAPI(
 async def health_check():
     return {"status": "ok"}
 
-@app.post("/notifications/", response_model=Notification)
+@app.post("/", response_model=Notification)
 async def create_notification(notification: Notification):
     # Convert the model into a dictionary using aliases for Firestore
     notification_data = notification.model_dump(by_alias=True)
@@ -65,7 +65,7 @@ async def create_notification(notification: Notification):
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"Error creating notification: {exc}")
 
-@app.get("/notifications/{notification_id}", response_model=Notification)
+@app.get("/{notification_id}", response_model=Notification)
 async def get_notification(notification_id: str):
     try:
         doc = app.state.notifications_ref.document(notification_id).get()
