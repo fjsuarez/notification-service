@@ -14,4 +14,4 @@ app.include_router(notification_routes.router, tags=["Notifications"])
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=settings.PORT, logging="info")
+    uvicorn.run(app, host="0.0.0.0", port=settings.PORT)
